@@ -3,9 +3,9 @@ const http = require("http");
 const app = require("../app/app");
 const { connectToMongoDB } = require("../config/dbConnect");
 const PORT = process.env.PORT || 8080;
-connectToMongoDB("mongodb://localhost:27017/short-url").then(
-  console.log("MongoDB connection successfully🚀")
-);
+connectToMongoDB(
+  process.env.MONGO_URI || "mongodb://localhost:27017/short-url"
+).then(console.log("MongoDB connection successfully🚀"));
 
 const server = http.createServer(app);
 
